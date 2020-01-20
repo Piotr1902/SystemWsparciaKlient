@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="form-group text-center">Nazwa i seria broni</th>
+                <th scope="col" class="form-group text-center">Data wypisania</th>
+                <th scope="col" class="form-group text-center">Aktualna data i godzina</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">
+                    <select [(ngModel)]="model.weaponId" class="form-control mr-sm-2" name="Wybierz bron" placeholder="Wybierz broń">
+                        <option *ngFor="let weapon of weapons" [ngValue]=weapon.id>{{weapon.name}} {{weapon.seria}}</option>
+                    </select> 
+                </th>
+                <th scope="col">
+                    <div class="form-group text-center">
+                        <button  class="btn btn-info button-block" (click)="aktualnaData()">Data i godzina</button>
+                    </div>
+                </th>
+                <th scope="col">
+                    <div class="form-group text-center">
+                        {{date1 | date: 'yyyy-MM-dd HH:mm'}}
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-group text-center">
+        <button type="button" class="btn btn-success" (click)="wypisz()">Wypisz</button>
+        <button type="button" class="btn btn-warning" (click)="anuluj()">Anuluj</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="form-group text-center">Seria i nazwa broni</th>
+                <th scope="col" class="form-group text-center">Data wydania</th>
+                <th scope="col" class="form-group text-center">Data zwrotu</th>
+                <th scope="col" class="form-group text-center">Stan</th>
+                <th scope="col" class="form-group text-center">Aktualizuj</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="form-group text-center" *ngFor="let issueWeapon of issueweapons">
+                <th scope="col">
+                    {{issueWeapon.weaponId}}                      
+                </th>
+                <th scope="col">
+                    {{issueWeapon.dateIssue | date: 'yyyy-MM-dd HH:mm:ss'}}                      
+                </th>
+                <th scope="col">
+                    {{issueWeapon.dateReturn | date: 'yyyy-MM-dd HH:mm:ss'}}                      
+                </th>
+                <th scope="col">
+                    {{issueWeapon.stan}}   
+                    <input type="text" class="form-control mr-sm-2" required name="Uwagi" [(ngModel)]="this.model.stan" placeholder="Uwagi">                   
+                </th>
+                <th>
+                    <button class="btn btn-primary" (click)="wpisz(issueWeapon.id)">Aktulaizuj</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>>

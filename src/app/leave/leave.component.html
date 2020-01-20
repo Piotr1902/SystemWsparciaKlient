@@ -1,0 +1,88 @@
+<form>
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col" class="form-group text-center">Imie Nazwisko</th>
+                  <th scope="col" class="form-group text-center">Typ</th>
+                  <th scope="col" class="form-group text-center">Adres pobytu</th>
+                  <th scope="col" class="form-group text-center">Data wyjścia</th>
+                  <th scope="col" class="form-group text-center">aktualna data i godzina</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="col">
+                    <select [(ngModel)]="model.soldierId" class="form-control mr-sm-2" name="Wybierz żołnierza" placeholder="Wybierz żołnierza">
+                        <option *ngFor="let soldier of soldiers" [ngValue]=soldier.id>{{soldier.name}} {{soldier.surname}}</option>
+                    </select>
+                </th>
+
+                <th>
+                    <select [(ngModel)]="model.typ" class="form-control mr-sm-2" name="Wybierz typ" placeholder="wybierz typ">
+                        <option *ngFor="let typ of types" [ngValue]=typ>{{typ}}</option>
+                    </select>
+                </th>
+                <th>
+                    <input type="text" class="form-control mr-sm-2" required name="Adres pobytu" [(ngModel)]="model.where" placeholder="Adres pobytu">
+                </th>
+
+                <th scope="col">
+                    <div class="form-group text-center">
+                        <button  class="btn btn-info button-block" (click)="aktualnaData()">Data i godzina</button>
+                    </div>
+                </th>
+                <th scope="col">
+                    <div class="form-group text-center">
+                        {{date1 | date: 'yyyy-MM-dd HH:mm'}}
+                    </div>
+                </th>
+                
+              </tr>
+            </tbody>
+        </table>
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-success" (click)="wypisz()">Wypisz</button>
+            <button type="button" class="btn btn-warning" (click)="anuluj()">Anuluj</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="form-group text-center">Imie Nazwisko</th>
+                    <th scope="col" class="form-group text-center">Typ</th>
+                    <th scope="col" class="form-group text-center">Adres pobytu</th>
+                    <th scope="col" class="form-group text-center">Data wyjścia</th>
+                    <th scope="col" class="form-group text-center">Data powrotu</th>
+                    <th scope="col" class="form-group text-center">Uwagi</th>
+                    <th scope="col" class="form-group text-center">Aktualizuj</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="form-group text-center" *ngFor="let leave of leaves">
+                    <th scope="col">
+                        {{leave.soldierName}}                      
+                    </th>
+                    <th scope="col">
+                        {{leave.typ}}                      
+                    </th>
+                    <th scope="col">
+                        {{leave.where | titlecase}}                      
+                    </th>
+                    <th scope="col">
+                        {{leave.dateLeave | date: 'yyyy-MM-dd HH:mm:ss'}}                      
+                    </th>
+                    <th scope="col">
+                        {{leave.dateReturn | date: 'yyyy-MM-dd HH:mm:ss'}}                   
+                    </th>
+                    <th>
+                        {{leave.annotation}}
+                        <input type="text" class="form-control mr-sm-2" required name="Uwagi" [(ngModel)]="this.model.annotation" placeholder="Uwagi">
+                    </th>
+                    <th>
+                        <button class="btn btn-primary" (click)="wpisz(leave.id)">Aktulaizuj</button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>

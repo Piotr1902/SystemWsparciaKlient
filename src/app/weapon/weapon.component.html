@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col" class="form-group text-center">Imie Nazwisko</th>
+              <th scope="col" class="form-group text-center">Nazwa</th>
+              <th scope="col" class="form-group text-center">Seria</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">
+                <select [(ngModel)]="model.soldierId" class="form-control mr-sm-2" name="Wybierz żołnierza" placeholder="Wybierz żołnierza">
+                    <option *ngFor="let soldier of soldiers" [ngValue]=soldier.id>{{soldier.name}} {{soldier.surname}}</option>
+                </select>
+            </th>
+            <th>
+                <input type="text" class="form-control mr-sm-2" required name="Name" [(ngModel)]="model.name" placeholder="Nazwa">
+            </th>
+            <th>
+                <input type="text" class="form-control mr-sm-2" required name="Seria" [(ngModel)]="model.seria" placeholder="Seria">
+            </th>            
+          </tr>
+        </tbody>
+        
+    </table>
+    <div class="form-group text-center">
+        <button type="button" class="btn btn-success" (click)="dodajBron()">Dodaj broń</button>
+        <button type="button" class="btn btn-warning" (click)="anuluj()">Anuluj</button>
+    </div> 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="form-group text-center">Imie Nazwisko</th>
+                <th scope="col" class="form-group text-center">Nazwa</th>
+                <th scope="col" class="form-group text-center">Seria</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="form-group text-center" *ngFor="let weapon of weapons">
+                <th scope="col">
+                    {{weapon.soldierName}}
+                    <!-- <input type="number" class="form-control mr-sm-2" required name="Uwagi" [(ngModel)]="this.model.soldierId" placeholder="Uwagi">                     -->
+
+                    <select [(ngModel)]="model.soldierId" class="form-control mr-sm-2" name="Wybierz żołnierza" placeholder="Wybierz żołnierza">
+                        <option *ngFor="let soldier of soldiers" [ngValue]=soldier.id>{{soldier.name}} {{soldier.surname}}</option>
+                    </select>
+
+                </th>
+                <th scope="col">
+                  {{weapon.name}}                      
+                </th>
+                <th scope="col">
+                    {{weapon.seria}}                      
+                </th>
+                <th scope="col">
+                    <button class="btn btn-success" (click)="edytujBron(weapon.id)">Aktulaizuj</button>
+                </th>
+                <th scope="col">
+                    <button class="btn btn-danger" (click)="usunBron(weapon.id)">Usuń</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+

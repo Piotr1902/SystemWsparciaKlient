@@ -1,0 +1,31 @@
+<form>
+  <div class="container mt-5">
+    <div class style="text-align: center">
+      <h1>Jeśli nie masz konta zarejestruj się</h1>
+      <div class="form-group text-center">
+        <input type="text" class="form-control mr-sm-2" required name="username" [(ngModel)]="model.username" placeholder="Nazwa użytkownika">
+      </div>
+      <div class="form-group text-center">
+          <input type="password" class="form-control mr-sm-2" required name="password" [(ngModel)]="model.password" placeholder="Hasło">
+      </div>
+      <div class="form-group text-center">
+        <input type="text" class="form-control mr-sm-2" required name="name" [(ngModel)]="model.name" placeholder="Imie">
+      </div>
+      <div class="form-group text-center">
+        <input type="text" class="form-control mr-sm-2" required name="surname" [(ngModel)]="model.surname" placeholder="Nazwisko">
+      </div>
+      <div class="form-group text-center">
+        <input type="number" class="form-control mr-sm-2" required name="pesel" [(ngModel)]="model.pesel" placeholder="Pesel">
+      </div>
+      <div class="form-group text-center">
+        <input type="number" class="form-control mr-sm-2" required name="phone" [(ngModel)]="model.phoneNr" placeholder="Numer telefonu">
+      </div>
+      <label>wybierz kompanie</label>
+      <select [(ngModel)]="model.companyId" class="form-control mr-sm-2" name="Wybierz kompanie" placeholder="Wybierz kompanie">
+        <option *ngFor="let company of companies" [ngValue]=company.id>{{company.nameCompany}}</option>
+      </select>
+      <button class="btn btn-primary btn-lg mr-sm-2 mt-3" (click)="register()">Rejestracja</button>
+    </div>
+  </div>
+</form>
+
